@@ -1,9 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-[CreateAssetMenu]
-public class BonusData : ScriptableObject
+﻿using UnityEngine;
+
+namespace Data
 {
-    public GameObject gameObject;
-    public float speedBonus;
+    [CreateAssetMenu]
+    public class BonusData : ScriptableObject
+    {
+        public GameObject goodBonus;
+        public GameObject badBonus;
+        public float speedBonus;
+    }
 }

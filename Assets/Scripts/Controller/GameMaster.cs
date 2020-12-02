@@ -36,14 +36,5 @@ namespace Controller
         {
             _controllerMaster.Cleanup();
         }
-
-        /*private void SpawnBonuses()
-        {
-            GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
-            foreach (var spawnPoint in spawnPoints)
-            {
-                Instantiate(_data.BonusData.gameObject, spawnPoint.transform.position, Quaternion.identity);
-            }
-        }*/
     }
 }

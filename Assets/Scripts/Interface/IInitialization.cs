@@ -1,6 +1,4 @@
-﻿using UnityEditor.SceneManagement;
-
-namespace Interface
+﻿namespace Interface
 {
     public interface IInitialization : IController
     {

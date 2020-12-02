@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4ea359f5a9db947a7ff6accd81d353, type: 3}
   m_Name: BonusData
   m_EditorClassIdentifier: 
-  gameObject: {fileID: 6955140308270365273, guid: 8e150e0137116bf4fb1c2ddcaf71d94b, type: 3}
+  goodBonus: {fileID: 6955140308270365273, guid: 8e150e0137116bf4fb1c2ddcaf71d94b, type: 3}
+  badBonus: {fileID: 8105061001793890344, guid: 17792cb943815494593c3fb179bfe74b, type: 3}
   speedBonus: 2
