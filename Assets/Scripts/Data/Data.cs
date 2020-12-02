@@ -8,6 +8,7 @@ namespace Data
         [SerializeField] private PlayerData _playerData;
         [SerializeField] private CameraData _cameraData;
         [SerializeField] private BonusData _bonusData;
+        [SerializeField] private SpawnPointData _spawnPointData;
     
         public PlayerData PlayerData
         {
@@ -25,6 +26,12 @@ namespace Data
         {
             get => _bonusData;
             set => _bonusData = value;
+        }
+
+        public SpawnPointData SpawnPointData
+        {
+            get => _spawnPointData;
+            set => _spawnPointData = value;
         }
     }
 }

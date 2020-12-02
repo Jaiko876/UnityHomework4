@@ -1,11 +1,16 @@
-﻿namespace Interactive
+﻿using Data;
+
+namespace Interactive
 {
-    public class BadBonus : InteractiveObject
+    public class BadBonus : InteractiveObject<BonusData>
     {
         protected override void Interact()
         {
-            _speedBonus = -3f;
-            _playerController.BonusEnter(_speedBonus);
+            var speedBonus = _data.speedBonus * -1f;
+            foreach (var controller in _controllers)
+            {
+                controller.Interact(speedBonus);
+            }
             DestroyObject();
         }
     }

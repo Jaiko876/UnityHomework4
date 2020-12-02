@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Data;
+using Enum;
+using Fabric;
 using Interactive;
 using Interface;
 using UnityEngine;
@@ -9,36 +11,42 @@ namespace Controller
     public class BonusController : IInitialization, IExecution
     {
         private PlayerController _playerController;
+        private SpawnPointController _spawnPointController;
         private BonusData _bonusData;
         private List<GameObject> _bonuses;
 
-        public BonusController(PlayerController playerController, BonusData bonusData)
+        public BonusController(PlayerController playerController, SpawnPointController spawnPointController, BonusData bonusData)
         {
             _playerController = playerController;
+            _spawnPointController = spawnPointController;
             _bonusData = bonusData;
         }
 
         public void Initialize()
         {
+            var bonusFabric = new BonusFabric(_bonusData);
             _bonuses = new List<GameObject>();
-            GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
-            for (var i = 0; i < spawnPoints.Length; i++)
+            var spawnPoints = _spawnPointController.Data.SpawnPoints;
+
+            foreach (var spawnPoint in spawnPoints)
             {
-                var spawnPoint = spawnPoints[i];
-                GameObject gameObject;
-                if (i % 2 != 0)
+                GameObject gameObject = null;
+                if (spawnPoint.Type == SpawnPointTypeEnum.SPEED_BUF)
                 {
-                    gameObject = GameObject.Instantiate(_bonusData.goodBonus, spawnPoint.transform.position,
+                    gameObject = bonusFabric.Instantiate(BonusEnum.GOOD_BONUS, spawnPoint.transform.position,
                         Quaternion.identity);
                 }
-                else
+                else if (spawnPoint.Type == SpawnPointTypeEnum.SPEED_DEBUF)
                 {
-                    gameObject = GameObject.Instantiate(_bonusData.badBonus, spawnPoint.transform.position,
+                    gameObject = bonusFabric.Instantiate(BonusEnum.BAD_BONUS, spawnPoint.transform.position,
                         Quaternion.identity);
                 }
 
-                var bonus = gameObject.GetComponent<InteractiveObject>();
-                bonus.SetPlayerController(_playerController);
+                if (gameObject == null) continue;
+                var bonus = gameObject.GetComponent<InteractiveObject<BonusData>>();
+                bonus.AddController(_playerController);
+                bonus.SetData(_bonusData);
+                _bonuses.Add(gameObject);
             }
         }
 

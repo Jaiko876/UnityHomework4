@@ -27,7 +27,7 @@ namespace Player
             }
         }
 
-        public void BonusEnter(float value)
+        public void Interact(float value)
         {
             _playerData._speed = _defaultSpeed;
             _playerData._speed += value;

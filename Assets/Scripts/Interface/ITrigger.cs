@@ -2,6 +2,6 @@
 {
     public interface ITrigger
     {
-        void BonusEnter(float value);
+        void Interact(float value);
     }
 }

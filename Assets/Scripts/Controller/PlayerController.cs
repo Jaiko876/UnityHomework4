@@ -36,9 +36,9 @@ namespace Controller
             _playerMovementService.Cleanup();
         }
 
-        public void BonusEnter(float value)
+        public void Interact(float value)
         {
-            _playerActionService.BonusEnter(value);
+            _playerActionService.Interact(value);
         }
     }
 }

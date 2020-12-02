@@ -12,10 +12,12 @@ namespace Controller
             _data.PlayerData.player = GameObject.FindWithTag("Player");
             var playerController = new PlayerController(_data.PlayerData);
             var cameraController = new CameraController(_data.CameraData, _data.PlayerData);
-            var bonusController = new BonusController(playerController, _data.BonusData);
+            var spawnPointController = new SpawnPointController(_data.SpawnPointData);
+            var bonusController = new BonusController(playerController,spawnPointController, _data.BonusData);
             _controllerMaster = new ControllerMaster();
             _controllerMaster.Add(playerController);
             _controllerMaster.Add(cameraController);
+            _controllerMaster.Add(spawnPointController);
             _controllerMaster.Add(bonusController);
             _controllerMaster.Initialize();
         }
