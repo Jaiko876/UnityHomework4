@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aac00736cfba940af856cc1787f11b, type: 3}
+  m_Name: Data
+  m_EditorClassIdentifier: 
+  _playerData: {fileID: 11400000, guid: c2815c5ad778d504a9cfebbe9e6b9c34, type: 2}
+  _cameraData: {fileID: 11400000, guid: 3cc4881758c0561459be28153d6b3d7b, type: 2}
+  _bonusData: {fileID: 11400000, guid: 69b970a6fa2dc2e44be533d73480093c, type: 2}
+  _spawnPoints: {fileID: 11400000, guid: 1aa458fd434dbad4c9d13732cd2e2ace, type: 2}
