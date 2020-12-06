@@ -11,13 +11,15 @@ namespace Controller
     public class BonusController : IInitialization, IExecution
     {
         private PlayerController _playerController;
+        private UIController _uiController;
         private SpawnPointController _spawnPointController;
         private BonusData _bonusData;
         private List<GameObject> _bonuses;
 
-        public BonusController(PlayerController playerController, SpawnPointController spawnPointController, BonusData bonusData)
+        public BonusController(PlayerController playerController, UIController uiController, SpawnPointController spawnPointController, BonusData bonusData)
         {
             _playerController = playerController;
+            _uiController = uiController;
             _spawnPointController = spawnPointController;
             _bonusData = bonusData;
         }
@@ -44,7 +46,7 @@ namespace Controller
 
                 if (gameObject == null) continue;
                 var bonus = gameObject.GetComponent<InteractiveObject<BonusData>>();
-                bonus.AddController(_playerController);
+                SignControllers(bonus, _playerController, _uiController);
                 bonus.SetData(_bonusData);
                 _bonuses.Add(gameObject);
             }
@@ -52,6 +54,14 @@ namespace Controller
 
         public void Execute(float deltaTime)
         {
+        }
+
+        private void SignControllers(InteractiveObject<BonusData> bonus, params ITrigger[] triggers)
+        {
+            foreach (var controller in triggers)
+            {
+                bonus.AddController(controller);
+            }
         }
     }
 }

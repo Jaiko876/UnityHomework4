@@ -1,4 +1,6 @@
-﻿using Data;
+﻿using System;
+using System.Collections.Generic;
+using Data;
 using Interface;
 using SpawnPoints;
 using UnityEngine;
@@ -17,6 +19,10 @@ namespace Controller
         public void Initialize()
         {
             GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+            if (spawnPoints.Length == 0)
+            {
+                throw new Exception("Отсутствуют точки спауна бонусов");
+            }
             foreach (var spawnPoint in spawnPoints)
             {
                 SpawnPoint point = spawnPoint.GetComponent<SpawnPoint>();
@@ -28,7 +34,7 @@ namespace Controller
         public SpawnPointData Data => _data;
         public void Cleanup()
         {
-            _data._spawnPoints = null;
+            _data._spawnPoints = new List<SpawnPoint>();
         }
     }
 }
