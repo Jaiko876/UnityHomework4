@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Controller;
+using Interface;
 using UnityEngine;
 
 namespace Interactive
 {
-    public abstract class InteractiveObject : MonoBehaviour
+    public abstract class InteractiveObject<T> : MonoBehaviour where T : ScriptableObject
     {
-        protected float _speedBonus;
-        protected PlayerController _playerController;
+        protected T _data;
+        protected List<ITrigger> _controllers = new List<ITrigger>();
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
@@ -23,9 +26,17 @@ namespace Interactive
             Destroy(gameObject);
         }
         
-        public void SetPlayerController(PlayerController playerController)
+        public void AddController(ITrigger triggerController)
         {
-            _playerController = playerController;
+            if (!_controllers.Any(c => c.Equals(triggerController)))
+            {
+                _controllers.Add(triggerController);
+            }
+        }
+
+        public void SetData(T data)
+        {
+            _data = data;
         }
     }
 }

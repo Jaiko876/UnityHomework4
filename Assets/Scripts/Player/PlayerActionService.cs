@@ -1,37 +1,60 @@
-﻿using Data;
+﻿using Controller;
+using Data;
 using Interface;
 
 namespace Player
 {
-    public class PlayerActionService : ITrigger, IExecution
+    public class PlayerActionService : IExecution, ICleanup
     {
+        private UIController _uiController;
         private PlayerData _playerData;
         private float _bonusActiveTime;
         private float _defaultSpeed;
-        public PlayerActionService(PlayerData playerData)
+        private bool _isSpeedBonusTriggered;
+        
+        public PlayerActionService(UIController uiController, PlayerData playerData)
         {
+            _uiController = uiController;
             _playerData = playerData;
             _bonusActiveTime = 0f;
             _defaultSpeed = playerData._speed;
+            _isSpeedBonusTriggered = false;
         }
         
         public void Execute(float deltaTime)
         {
-            if (_bonusActiveTime > 0f)
+            if (_isSpeedBonusTriggered)
             {
-                _bonusActiveTime -= deltaTime;
-            }
-            else
-            {
-                _playerData._speed = _defaultSpeed;
+                if (_bonusActiveTime > 0f)
+                {
+                    _bonusActiveTime -= deltaTime;
+                }
+                else
+                {
+                    _playerData._speed = _defaultSpeed;
+                    _uiController.Interact(0);
+                    _isSpeedBonusTriggered = false;
+                }
             }
         }
 
-        public void BonusEnter(float value)
+        public void Interact(float value)
         {
             _playerData._speed = _defaultSpeed;
             _playerData._speed += value;
             _bonusActiveTime += 2f;
+            _isSpeedBonusTriggered = true;
+        }
+
+        public void Cleanup()
+        {
+            _playerData._speed = _defaultSpeed;
+        }
+
+        public float DefaultSpeed
+        {
+            get => _defaultSpeed;
+            set => _defaultSpeed = value;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using UI;
 using UnityEngine;
 
 namespace Controller
@@ -9,14 +10,20 @@ namespace Controller
         private ControllerMaster _controllerMaster;
         private void Start()
         {
+            var menu = gameObject.GetComponentInChildren<Menu>();
+            var uiView = gameObject.GetComponentInChildren<UIView>();
             _data.PlayerData.player = GameObject.FindWithTag("Player");
-            var playerController = new PlayerController(_data.PlayerData);
+            var uiController = new UIController(menu, uiView);
+            var playerController = new PlayerController(uiController, _data.PlayerData);
             var cameraController = new CameraController(_data.CameraData, _data.PlayerData);
-            var bonusController = new BonusController(playerController, _data.BonusData);
+            var spawnPointController = new SpawnPointController(_data.SpawnPointData);
+            var bonusController = new BonusController(playerController, uiController, spawnPointController, _data.BonusData);
             _controllerMaster = new ControllerMaster();
             _controllerMaster.Add(playerController);
             _controllerMaster.Add(cameraController);
+            _controllerMaster.Add(spawnPointController);
             _controllerMaster.Add(bonusController);
+            _controllerMaster.Add(uiController);
             _controllerMaster.Initialize();
         }
 

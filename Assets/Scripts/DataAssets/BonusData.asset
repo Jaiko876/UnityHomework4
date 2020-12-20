@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BonusData
   m_EditorClassIdentifier: 
   goodBonus: {fileID: 6955140308270365273, guid: 8e150e0137116bf4fb1c2ddcaf71d94b, type: 3}
-  badBonus: {fileID: 8105061001793890344, guid: 17792cb943815494593c3fb179bfe74b, type: 3}
-  speedBonus: 2
+  badBonus: {fileID: 4139864690806365667, guid: 3552dd70ef9d8e647949aa56ee13d92f, type: 3}
+  speedBonus: 3
