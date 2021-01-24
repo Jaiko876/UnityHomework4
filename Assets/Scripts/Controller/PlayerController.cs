@@ -9,9 +9,9 @@ namespace Controller
     {
         private PlayerMovementService _playerMovementService;
         private PlayerActionService _playerActionService;
-        private UIController _uiController;
+        private UiController _uiController;
 
-        public PlayerController(UIController uiController, PlayerData playerData)
+        public PlayerController(UiController uiController, PlayerData playerData)
         {
             _playerMovementService = new PlayerMovementService(playerData);
             _playerActionService = new PlayerActionService(uiController, playerData);

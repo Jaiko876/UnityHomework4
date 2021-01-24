@@ -3,12 +3,12 @@ using UI;
 
 namespace Controller
 {
-    public class UIController : IInitialization, IExecution, ICleanup, ITrigger
+    public class UiController : IInitialization, IExecution, ICleanup, ITrigger
     {
         private Menu _menu;
         private UIView _uiView;
 
-        public UIController(Menu menu, UIView uiView)
+        public UiController(Menu menu, UIView uiView)
         {
             _menu = menu;
             _uiView = uiView;

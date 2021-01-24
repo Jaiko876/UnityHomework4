@@ -6,13 +6,13 @@ namespace Player
 {
     public class PlayerActionService : IExecution, ICleanup
     {
-        private UIController _uiController;
+        private UiController _uiController;
         private PlayerData _playerData;
         private float _bonusActiveTime;
         private float _defaultSpeed;
         private bool _isSpeedBonusTriggered;
         
-        public PlayerActionService(UIController uiController, PlayerData playerData)
+        public PlayerActionService(UiController uiController, PlayerData playerData)
         {
             _uiController = uiController;
             _playerData = playerData;

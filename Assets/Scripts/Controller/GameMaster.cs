@@ -13,7 +13,7 @@ namespace Controller
             var menu = gameObject.GetComponentInChildren<Menu>();
             var uiView = gameObject.GetComponentInChildren<UIView>();
             _data.PlayerData.player = GameObject.FindWithTag("Player");
-            var uiController = new UIController(menu, uiView);
+            var uiController = new UiController(menu, uiView);
             var playerController = new PlayerController(uiController, _data.PlayerData);
             var cameraController = new CameraController(_data.CameraData, _data.PlayerData);
             var spawnPointController = new SpawnPointController(_data.SpawnPointData);

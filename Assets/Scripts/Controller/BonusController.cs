@@ -11,12 +11,12 @@ namespace Controller
     public class BonusController : IInitialization, IExecution
     {
         private PlayerController _playerController;
-        private UIController _uiController;
+        private UiController _uiController;
         private SpawnPointController _spawnPointController;
         private BonusData _bonusData;
         private List<GameObject> _bonuses;
 
-        public BonusController(PlayerController playerController, UIController uiController, SpawnPointController spawnPointController, BonusData bonusData)
+        public BonusController(PlayerController playerController, UiController uiController, SpawnPointController spawnPointController, BonusData bonusData)
         {
             _playerController = playerController;
             _uiController = uiController;
