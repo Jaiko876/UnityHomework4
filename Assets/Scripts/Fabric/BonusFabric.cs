@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Fabric
 {
-    public class BonusFabric : AbstractInteractiveFabric <BonusEnum>
+    public class BonusFabric : AbstractFabric <BonusEnum>
     {
         private BonusData _bonusData;
 
@@ -15,11 +15,11 @@ namespace Fabric
         public override GameObject Instantiate(BonusEnum e, Vector3 position, Quaternion quaternion)
         {
             GameObject bonus = null;
-            if (BonusEnum.GOOD_BONUS == e)
+            if (BonusEnum.SPEED_BUF == e)
             {
                 bonus = GameObject.Instantiate(_bonusData.goodBonus, position, quaternion);
             } 
-            else if (BonusEnum.BAD_BONUS == e)
+            else if (BonusEnum.SPEED_DEBUF == e)
             {
                 bonus = GameObject.Instantiate(_bonusData.badBonus, position, quaternion);
             }

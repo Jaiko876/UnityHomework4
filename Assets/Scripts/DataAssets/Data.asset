@@ -15,4 +15,6 @@ MonoBehaviour:
   _playerData: {fileID: 11400000, guid: c2815c5ad778d504a9cfebbe9e6b9c34, type: 2}
   _cameraData: {fileID: 11400000, guid: 3cc4881758c0561459be28153d6b3d7b, type: 2}
   _bonusData: {fileID: 11400000, guid: 69b970a6fa2dc2e44be533d73480093c, type: 2}
+  _enemyData: {fileID: 11400000, guid: cf0c5344c9dd61e4daecf961c0aea083, type: 2}
   _spawnPointData: {fileID: 11400000, guid: 1dbb2ad401909d94fadf7e8ae148dc0e, type: 2}
+  _bulletData: {fileID: 11400000, guid: dbec051d25e00fc41a6598b2c3836ccd, type: 2}

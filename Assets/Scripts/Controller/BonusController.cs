@@ -16,31 +16,41 @@ namespace Controller
         private BonusData _bonusData;
         private List<GameObject> _bonuses;
 
-        public BonusController(PlayerController playerController, UiController uiController, SpawnPointController spawnPointController, BonusData bonusData)
+        public BonusController(BonusData bonusData)
         {
-            _playerController = playerController;
-            _uiController = uiController;
-            _spawnPointController = spawnPointController;
             _bonusData = bonusData;
         }
 
         public void Initialize()
         {
+            _playerController = (PlayerController) ControllerMaster.InjectController(typeof(PlayerController));
+            _uiController = (UiController) ControllerMaster.InjectController(typeof(UiController));
+            _spawnPointController = (SpawnPointController) ControllerMaster.InjectController(typeof(SpawnPointController));
+            
+            InitializeBonuses();
+        }
+
+        public void Execute(float deltaTime)
+        {
+        }
+
+        private void InitializeBonuses()
+        {
             var bonusFabric = new BonusFabric(_bonusData);
             _bonuses = new List<GameObject>();
-            var spawnPoints = _spawnPointController.Data.SpawnPoints;
+            var spawnPoints = _spawnPointController.Data.BonusSpawnPoints;
 
             foreach (var spawnPoint in spawnPoints)
             {
                 GameObject gameObject = null;
-                if (spawnPoint.Type == SpawnPointTypeEnum.SPEED_BUF)
+                if (spawnPoint.Type == BonusEnum.SPEED_BUF)
                 {
-                    gameObject = bonusFabric.Instantiate(BonusEnum.GOOD_BONUS, spawnPoint.transform.position,
+                    gameObject = bonusFabric.Instantiate(BonusEnum.SPEED_BUF, spawnPoint.transform.position,
                         Quaternion.identity);
                 }
-                else if (spawnPoint.Type == SpawnPointTypeEnum.SPEED_DEBUF)
+                else if (spawnPoint.Type == BonusEnum.SPEED_DEBUF)
                 {
-                    gameObject = bonusFabric.Instantiate(BonusEnum.BAD_BONUS, spawnPoint.transform.position,
+                    gameObject = bonusFabric.Instantiate(BonusEnum.SPEED_DEBUF, spawnPoint.transform.position,
                         Quaternion.identity);
                 }
 
@@ -51,11 +61,7 @@ namespace Controller
                 _bonuses.Add(gameObject);
             }
         }
-
-        public void Execute(float deltaTime)
-        {
-        }
-
+        
         private void SignControllers(InteractiveObject<BonusData> bonus, params ITrigger[] triggers)
         {
             foreach (var controller in triggers)

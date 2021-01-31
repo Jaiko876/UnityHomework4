@@ -1,5 +1,7 @@
 ﻿using System;
 using Data;
+using Enum;
+using Interactive;
 using Interface;
 using Player;
 
@@ -10,16 +12,22 @@ namespace Controller
         private PlayerMovementService _playerMovementService;
         private PlayerActionService _playerActionService;
         private UiController _uiController;
+        private CameraController _cameraController;
 
-        public PlayerController(UiController uiController, PlayerData playerData)
+        private PlayerData _playerData;
+
+        public PlayerController(PlayerData playerData)
         {
-            _playerMovementService = new PlayerMovementService(playerData);
-            _playerActionService = new PlayerActionService(uiController, playerData);
-            _uiController = uiController;
+            _playerData = playerData;
         }
         public void Initialize()
         {
-            _playerMovementService.Initialize();
+            _uiController = (UiController) ControllerMaster.InjectController(typeof(UiController));
+            _cameraController = (CameraController) ControllerMaster.InjectController(typeof(CameraController));
+
+            _playerMovementService = new PlayerMovementService(_playerData);
+            _playerActionService = new PlayerActionService(_uiController, _playerData);
+            
             _uiController.UiView.DefaultSpeedValue = _playerActionService.DefaultSpeed;
         }
 
@@ -45,5 +53,13 @@ namespace Controller
         {
             _playerActionService.Interact(value);
         }
+
+        public PlayerData GetData()
+        {
+            return _playerData;
+        }
+        
+        public PlayerActionService PlayerActionService => _playerActionService;
+
     }
 }

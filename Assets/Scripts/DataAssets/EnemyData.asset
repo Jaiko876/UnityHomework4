@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc3972a92662554cb4e38cab2be1099, type: 3}
+  m_Name: EnemyData
+  m_EditorClassIdentifier: 
+  _commonEnemy: {fileID: 1209680136168592078, guid: 6e50bc574ac41dc45b374a09d841f59c, type: 3}
+  _radiusOfView: 20
+  _viewAngle: 360
+  _rateOfFire: 0.65
+  _amountOfAmmo: 0

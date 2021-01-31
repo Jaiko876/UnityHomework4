@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   _speed: 5
+  health: 100
+  _rateOfFire: 0.2
+  _amountOfAmmo: 0
   player: {fileID: 0}

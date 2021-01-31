@@ -1,10 +1,11 @@
-﻿using Data;
+﻿using System.Collections;
+using Data;
 using Interface;
 using UnityEngine;
 
 namespace Camera
 {
-    public class CameraService : IInitialization, IExecution
+    public class CameraService : IExecution
     {
         private CameraData _cameraData;
         private PlayerData _playerData;
@@ -17,10 +18,6 @@ namespace Camera
         {
             _cameraData = cameraData;
             _playerData = playerData;
-        }
-
-        public void Initialize()
-        {
             _camera = UnityEngine.Camera.main;
             _velocity = Vector3.zero;
             _smoothTime = _cameraData._smoothTime;

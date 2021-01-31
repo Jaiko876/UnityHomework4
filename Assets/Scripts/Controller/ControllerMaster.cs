@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using Enum;
 using Interface;
 
 namespace Controller
@@ -9,6 +12,7 @@ namespace Controller
         private readonly List<IExecution> _executeControllers;
         private readonly List<ILateExecution> _lateExecuteControllers;
         private readonly List<ICleanup> _cleanupControllers;
+        private static Dictionary<Type, IController> _controllerMap;
 
         internal ControllerMaster()
         {
@@ -16,6 +20,7 @@ namespace Controller
             _executeControllers = new List<IExecution>();
             _lateExecuteControllers = new List<ILateExecution>();
             _cleanupControllers = new List<ICleanup>();
+            _controllerMap = new Dictionary<Type, IController>();
         }
 
         internal ControllerMaster Add(IController controller)
@@ -39,6 +44,8 @@ namespace Controller
             {
                 _cleanupControllers.Add(cleanupController);
             }
+            
+            _controllerMap.Add(controller.GetType(), controller);
 
             return this;
         }
@@ -73,6 +80,11 @@ namespace Controller
             {
                 cleanupController.Cleanup();
             }
+        }
+
+        public static IController InjectController(Type type)
+        {
+            return _controllerMap[type];
         }
     }
 }
