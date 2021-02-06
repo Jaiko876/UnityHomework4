@@ -27,8 +27,7 @@ namespace View
                     var commonEnemy = _enemyController.Enemies.Find((enemy => enemy.EnemyView == other.gameObject));
                     commonEnemy.TakeDamage(5f);
                 }
-                _bulletController.DeleteBullet(gameObject);
-                Destroy(gameObject);
+                _bulletController.StashBullet(gameObject);
             }
         }
 
