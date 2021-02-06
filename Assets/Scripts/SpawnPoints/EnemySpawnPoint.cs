@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace SpawnPoints
 {
-    public class SpawnPoint : MonoBehaviour
+    public class EnemySpawnPoint : MonoBehaviour
     {
-        [SerializeField] private SpawnPointTypeEnum _type;
+        [SerializeField] private EnemyTypeEnum _type;
         private Vector3 _position;
 
-        public SpawnPointTypeEnum Type
+        public EnemyTypeEnum Type
         {
             get => _type;
             set => _type = value;

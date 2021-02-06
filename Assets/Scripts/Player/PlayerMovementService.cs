@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public sealed class PlayerMovementService : IInitialization, IExecution, ILateExecution, ICleanup
+    public sealed class PlayerMovementService : IExecution, ILateExecution, ICleanup
     {
         private PlayerData _playerData;
         private Vector3 _inputs;
@@ -15,9 +15,6 @@ namespace Player
         public PlayerMovementService(PlayerData playerData)
         {
             _playerData = playerData;
-        }
-        public void Initialize()
-        {
             _camera = UnityEngine.Camera.main;
             _inputs = Vector3.zero;
             _rigidbody = _playerData.player.GetComponent<Rigidbody>();

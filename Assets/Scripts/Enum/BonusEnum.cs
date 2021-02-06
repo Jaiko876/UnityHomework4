@@ -1,5 +1,5 @@
 ﻿public enum BonusEnum
 {
-    GOOD_BONUS,
-    BAD_BONUS
+    SPEED_BUF,
+    SPEED_DEBUF
 }

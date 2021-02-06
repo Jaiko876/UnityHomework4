@@ -8,12 +8,19 @@ namespace Data
     [CreateAssetMenu]
     public class SpawnPointData : ScriptableObject
     {
-        public List<SpawnPoint> _spawnPoints;
+        public List<BonusSpawnPoint> _bonusBonusSpawnPoints;
+        public List<EnemySpawnPoint> _enemySpawnPoints;
 
-        public List<SpawnPoint> SpawnPoints
+        public List<EnemySpawnPoint> EnemySpawnPoints
         {
-            get => _spawnPoints;
-            set => _spawnPoints = value;
+            get => _enemySpawnPoints;
+            set => _enemySpawnPoints = value;
+        }
+
+        public List<BonusSpawnPoint> BonusSpawnPoints
+        {
+            get => _bonusBonusSpawnPoints;
+            set => _bonusBonusSpawnPoints = value;
         }
     }
 }

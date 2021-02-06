@@ -18,23 +18,39 @@ namespace Controller
 
         public void Initialize()
         {
-            GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
-            if (spawnPoints.Length == 0)
-            {
-                throw new Exception("Отсутствуют точки спауна бонусов");
-            }
-            foreach (var spawnPoint in spawnPoints)
-            {
-                SpawnPoint point = spawnPoint.GetComponent<SpawnPoint>();
-                point.Position = spawnPoint.transform.position;
-                _data.SpawnPoints.Add(point);
-            }
+            FindSpawnPoints();
         }
 
         public SpawnPointData Data => _data;
         public void Cleanup()
         {
-            _data._spawnPoints = new List<SpawnPoint>();
+            _data._bonusBonusSpawnPoints = new List<BonusSpawnPoint>();
+            _data._enemySpawnPoints = new List<EnemySpawnPoint>();
+        }
+        
+        private void FindSpawnPoints()
+        {
+            List<BonusSpawnPoint> bonusSpawnPoints = ObtainPoints<BonusSpawnPoint>("SpawnPoint");
+            List<EnemySpawnPoint> enemySpawnPoints = ObtainPoints<EnemySpawnPoint>("EnemySpawnPoint");
+            _data.BonusSpawnPoints.AddRange(bonusSpawnPoints);
+            _data.EnemySpawnPoints.AddRange(enemySpawnPoints);
+        }
+
+        private List<T> ObtainPoints<T>(string tag)
+        {
+            GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag(tag);
+            List<T> points = new List<T>();
+            if (spawnPoints.Length != 0)
+            {
+
+                foreach (var spawnPoint in spawnPoints)
+                {
+                    T point = spawnPoint.GetComponent<T>();
+                    points.Add(point);
+                }
+            }
+
+            return points;
         }
     }
 }
